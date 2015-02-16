@@ -1,10 +1,10 @@
 <?php
 
-class Bugaboo
+class BugabooParser implements ProviderParser
 {
 	public static function setHook( Parser $parser )
 	{
-		$parser->setHook('bugaboo', 'Bugaboo::parseTag');
+		$parser->setHook('bugaboo', __CLASS__ . '::parseTag');
 
 		return true;
 	}

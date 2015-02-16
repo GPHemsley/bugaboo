@@ -11,7 +11,16 @@ $wgExtensionCredits['parserhook'][] = array(
 	'license-name' => 'MPL 2.0',
 );
 
-$wgAutoloadClasses['Bugaboo'] = __DIR__ . '/Bugaboo.body.php';
+$includesDirectory = __DIR__ . '/includes';
 
-$wgHooks['ParserFirstCallInit'][] = 'Bugaboo::setHook';
+$wgAutoloadClasses['ProviderParser'] = $includesDirectory . '/ProviderParser.php';
+
+$parserDirectory = $includesDirectory . '/parser';
+
+$wgAutoloadClasses['BugabooParser'] = $parserDirectory . '/BugabooParser.php';
+$wgAutoloadClasses['BugzillaParser'] = $parserDirectory . '/BugzillaParser.php';
+// $wgAutoloadClasses['GitHubParser'] = $parserDirectory . '/GitHubParser.php';
+
+$wgHooks['ParserFirstCallInit'][] = 'BugabooParser::setHook';
+$wgHooks['ParserFirstCallInit'][] = 'BugzillaParser::setHook';
 
