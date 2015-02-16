@@ -13,6 +13,7 @@ $wgExtensionCredits['parserhook'][] = array(
 
 $includesDirectory = __DIR__ . '/includes';
 
+$wgAutoloadClasses['HttpRest'] = $includesDirectory . '/HttpRest.php';
 $wgAutoloadClasses['ProviderParser'] = $includesDirectory . '/ProviderParser.php';
 
 $parserDirectory = $includesDirectory . '/parser';

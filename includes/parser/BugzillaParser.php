@@ -11,12 +11,18 @@ class BugzillaParser implements ProviderParser
 
 	public static function parseTag( $input, array $args, Parser $parser, PPFrame $frame )
 	{
-		$output = $input . "\n";
+		$jsonQuery = FormatJson::decode( $input );
 
-		foreach ( $args as $attr => $val ) {
-			$output .= "$attr => $val\n";
+		if ( !is_null( $jsonQuery ) ) {
+			$url = 'https://bugzilla.mozilla.org/bzapi/bug?' . http_build_query( $jsonQuery );
+
+			$jsonObject = FormatJson::decode( HttpRest::get( $url ) );
+
+			$output = '[[ Query returned ' . count($jsonObject->bugs) . ' bugs ]]';
+		} else {
+			$output = 'BAD JSON!';
 		}
 
-		return str_replace( "\n", "<br />", htmlentities( $output ) );
+		return htmlentities( $output );
 	}
 }
