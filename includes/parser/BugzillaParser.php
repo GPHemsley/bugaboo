@@ -11,17 +11,58 @@ class BugzillaParser implements ProviderParser
 
 	public static function parseTag( $input, array $args, Parser $parser, PPFrame $frame )
 	{
-		$jsonQuery = FormatJson::decode( $input );
+		$jsonQuery = self::buildQuery( $input );
 
-		if ( !is_null( $jsonQuery ) ) {
-			$url = 'https://bugzilla.mozilla.org/bzapi/bug?' . http_build_query( $jsonQuery );
+		$jsonResult = self::sendRequest( $jsonQuery );
 
-			$jsonObject = FormatJson::decode( HttpRest::get( $url ) );
+		return self::formatResult( $jsonResult );
+	}
 
-			$output = '[[ Query returned ' . count($jsonObject->bugs) . ' bugs ]]';
-		} else {
-			$output = 'BAD JSON!';
+	protected static function decodeInput( $input )
+	{
+		return FormatJson::decode( $input );
+	}
+
+	protected static function buildQuery( $input )
+	{
+		$decodedInput = self::decodeInput( $input );
+
+		if ( is_null( $decodedInput ) ) {
+			return false;
 		}
+
+		return $decodedInput;
+	}
+
+	protected static function sendRequest( $jsonQuery )
+	{
+		if ( $jsonQuery === false ) {
+			return false;
+		}
+
+		$url = 'https://bugzilla.mozilla.org/bzapi/bug?' . http_build_query( $jsonQuery );
+
+		$jsonResult = self::buildResult( HttpRest::get( $url ) );
+
+		return $jsonResult;
+	}
+
+	protected static function buildResult( $request )
+	{
+		if ( !$request ) {
+			return false;
+		}
+
+		return FormatJson::decode( $request );
+	}
+
+	protected static function formatResult( $jsonResult )
+	{
+		if ( !$jsonResult ) {
+			return 'BAD JSON!';
+		}
+
+		$output = '[[ Query returned ' . count( $jsonResult->bugs ) . ' bugs ]]';
 
 		return htmlentities( $output );
 	}
