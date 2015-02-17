@@ -19,9 +19,10 @@ $parserDirectory = $includesDirectory . '/parser';
 
 $wgAutoloadClasses['BugabooParser'] = $parserDirectory . '/BugabooParser.php';
 $wgAutoloadClasses['BugzillaParser'] = $parserDirectory . '/BugzillaParser.php';
-// $wgAutoloadClasses['GitHubParser'] = $parserDirectory . '/GitHubParser.php';
+$wgAutoloadClasses['GitHubParser'] = $parserDirectory . '/GitHubParser.php';
 
 $wgHooks['ParserFirstCallInit'][] = 'BugabooParser::setHook';
 $wgHooks['ParserFirstCallInit'][] = 'BugzillaParser::setHook';
+$wgHooks['ParserFirstCallInit'][] = 'GitHubParser::setHook';
 
 /* vim:set ts=4 sw=4 sts=4 noexpandtab: */
