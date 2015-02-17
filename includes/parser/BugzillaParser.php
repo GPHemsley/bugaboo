@@ -26,3 +26,5 @@ class BugzillaParser implements ProviderParser
 		return htmlentities( $output );
 	}
 }
+
+/* vim:set ts=4 sw=4 sts=4 noexpandtab: */

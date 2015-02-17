@@ -20,3 +20,5 @@ class BugabooParser implements ProviderParser
 		return str_replace( "\n", "<br />", htmlentities( $output ) );
 	}
 }
+
+/* vim:set ts=4 sw=4 sts=4 noexpandtab: */

@@ -1,12 +1,11 @@
 <?php
-# vim: set ts=4 sw=4 sts=4 noet
 
 $wgExtensionCredits['parserhook'][] = array(
 	'path' => __FILE__,
 	'name' => 'Bugaboo',
 	'description' => 'Query and display bugs from a variety of bug trackers',
 	'version' => '1.0',
-	'author' => array( 'Gordon P. Hemsley', 'Christie Koehler' ),
+	'author' => array( 'Gordon P. Hemsley', '[http://christiekoehler.com Christie Koehler]' ),
 	'url' => 'https://github.com/MozillaWiki/bugaboo',
 	'license-name' => 'MPL 2.0',
 );
@@ -25,3 +24,4 @@ $wgAutoloadClasses['BugzillaParser'] = $parserDirectory . '/BugzillaParser.php';
 $wgHooks['ParserFirstCallInit'][] = 'BugabooParser::setHook';
 $wgHooks['ParserFirstCallInit'][] = 'BugzillaParser::setHook';
 
+/* vim:set ts=4 sw=4 sts=4 noexpandtab: */
