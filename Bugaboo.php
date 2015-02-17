@@ -4,8 +4,8 @@ $wgExtensionCredits['parserhook'][] = array(
 	'path' => __FILE__,
 	'name' => 'Bugaboo',
 	'description' => 'Query and display bugs from a variety of bug trackers',
-	'version' => '1.0',
-	'author' => array( 'Gordon P. Hemsley', '[http://christiekoehler.com Christie Koehler]' ),
+	'version' => '1.23-1.0-dev',
+	'author' => array( '[http://gphemsley.org/ Gordon P. Hemsley]', '[http://christiekoehler.com Christie Koehler]' ),
 	'url' => 'https://github.com/MozillaWiki/bugaboo',
 	'license-name' => 'MPL 2.0',
 );
