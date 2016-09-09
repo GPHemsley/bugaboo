@@ -1,0 +1,27 @@
+{
+	"name": "Bugaboo",
+	"version": "1.27-1.0-dev",
+	"author": [
+		"[http://gphemsley.org/ Gordon P. Hemsley]",
+		"[http://christiekoehler.com Christie Koehler]"
+	],
+	"url": "https://github.com/MozillaWiki/bugaboo",
+	"description": "Query and display bugs from a variety of bug trackers",
+	"license-name": "MPL 2.0",
+	"type": "parserhook",
+	"AutoloadClasses": {
+		"HttpRest": "includes/HttpRest.php",
+		"ProviderParser": "includes/ProviderParser.php",
+		"BugabooParser": "includes/parser/BugabooParser.php",
+		"BugzillaParser": "includes/parser/BugzillaParser.php",
+		"GitHubParser": "includes/parser/GitHubParser.php"
+	},
+	"Hooks": {
+		"ParserFirstCallInit": [
+			"BugabooParser::setHook",
+			"BugzillaParser::setHook",
+			"GitHubParser::setHook"
+		]
+	},
+	"manifest_version": 1
+}
